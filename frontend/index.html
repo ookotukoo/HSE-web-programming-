@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог товаров</title>
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1><i class="fas fa-store"></i> Каталог товаров</h1>
+            </div>
+            <div class="nav-links">
+                <a href="/" class="active"><i class="fas fa-list"></i> Товары</a>
+                <a href="/add"><i class="fas fa-plus-circle"></i> Добавить товар</a>
+                <a href="/stats"><i class="fas fa-chart-bar"></i> Статистика</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1 style="margin-bottom: 1.5rem; color: #667eea;">
+            <i class="fas fa-boxes"></i> Список товаров
+        </h1>
+
+        <!-- Фильтры -->
+        <div class="filters">
+            <div class="filter-group">
+                <label for="category"><i class="fas fa-filter"></i> Категория</label>
+                <select id="category">
+                    <option value="">Все категории</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="min-price"><i class="fas fa-tag"></i> Минимальная цена</label>
+                <input type="number" id="min-price" placeholder="0" min="0">
+            </div>
+
+            <div class="filter-group">
+                <label for="max-price"><i class="fas fa-tag"></i> Максимальная цена</label>
+                <input type="number" id="max-price" placeholder="1000000" min="0">
+            </div>
+
+            <div class="filter-group">
+                <label for="sort-by"><i class="fas fa-sort"></i> Сортировка</label>
+                <select id="sort-by">
+                    <option value="">По умолчанию</option>
+                    <option value="price_asc">Цена (по возрастанию)</option>
+                    <option value="price_desc">Цена (по убыванию)</option>
+                    <option value="name">Название (А-Я)</option>
+                    <option value="newest">Сначала новые</option>
+                </select>
+            </div>
+
+            <div class="filter-actions">
+                <button class="btn btn-primary" onclick="applyFilters()">
+                    <i class="fas fa-search"></i> Применить фильтры
+                </button>
+                <button class="btn btn-warning" onclick="resetFilters()">
+                    <i class="fas fa-redo"></i> Сбросить
+                </button>
+                <button class="btn btn-danger" onclick="createTestData()">
+                    <i class="fas fa-vial"></i> Тестовые данные
+                </button>
+            </div>
+        </div>
+
+        <!-- Загрузка -->
+        <div id="loading" class="loading">
+            <i class="fas fa-spinner"></i>
+            <p>Загрузка товаров...</p>
+        </div>
+
+        <!-- Таблица товаров -->
+        <div id="products-container" class="products-table-container" style="display: none;">
+            <table class="products-table">
+                <thead>
+                    <tr>
+                        <th><i class="fas fa-box"></i> Название</th>
+                        <th><i class="fas fa-align-left"></i> Описание</th>
+                        <th><i class="fas fa-tags"></i> Категория</th>
+                        <th><i class="fas fa-money-bill-wave"></i> Цена</th>
+                        <th><i class="fas fa-cubes"></i> Количество</th>
+                        <th><i class="fas fa-calendar-plus"></i> Дата добавления</th>
+                    </tr>
+                </thead>
+                <tbody id="products-table-body">
+                    <!-- Товары загружаются через JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Пагинация -->
+        <div id="pagination" class="pagination" style="display: none;">
+            <button id="prev-btn" class="btn" onclick="changePage(-1)" disabled>
+                <i class="fas fa-chevron-left"></i> Назад
+            </button>
+            <span id="page-info">Страница 1 из 1</span>
+            <button id="next-btn" class="btn" onclick="changePage(1)" disabled>
+                Вперед <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <!-- Информация о товарах -->
+        <div id="products-info" style="text-align: center; margin-top: 2rem; color: #666;">
+            <p>Всего товаров: <span id="total-count">0</span></p>
+        </div>
+    </main>
+
+    <!-- Уведомление -->
+    <div id="notification" class="notification" style="display: none;"></div>
+
+    <script src="static/script.js"></script>
+</body>
+</html>

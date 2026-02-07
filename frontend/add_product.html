@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить товар</title>
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1><i class="fas fa-store"></i> Каталог товаров</h1>
+            </div>
+            <div class="nav-links">
+                <a href="/"><i class="fas fa-list"></i> Товары</a>
+                <a href="/add" class="active"><i class="fas fa-plus-circle"></i> Добавить товар</a>
+                <a href="/stats"><i class="fas fa-chart-bar"></i> Статистика</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="form-container">
+            <h2><i class="fas fa-plus-circle"></i> Добавить новый товар</h2>
+
+            <div class="form-group">
+                <label for="name"><i class="fas fa-tag"></i> Название товара *</label>
+                <input type="text" id="name" placeholder="Например: Ноутбук ASUS" required>
+                <small style="color: #666; margin-top: 0.25rem; display: block;">
+                    Обязательное поле
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="description"><i class="fas fa-align-left"></i> Описание</label>
+                <textarea id="description" placeholder="Подробное описание товара..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="price"><i class="fas fa-money-bill-wave"></i> Цена (₽) *</label>
+                <input type="number" id="price" placeholder="0.00" min="0" step="0.01" required>
+                <small style="color: #666; margin-top: 0.25rem; display: block;">
+                    Обязательное поле, должно быть больше 0
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="category"><i class="fas fa-tags"></i> Категория *</label>
+                <select id="category" required>
+                    <option value="">Выберите категорию</option>
+                    <option value="electronics">Электроника</option>
+                    <option value="clothing">Одежда</option>
+                    <option value="books">Книги</option>
+                    <option value="food">Продукты питания</option>
+                    <option value="other">Другое</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="quantity"><i class="fas fa-cubes"></i> Количество на складе</label>
+                <input type="number" id="quantity" placeholder="0" min="0" value="0">
+                <small style="color: #666; margin-top: 0.25rem; display: block;">
+                    Если не указано, будет 0
+                </small>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn btn-primary" onclick="addProduct()">
+                    <i class="fas fa-save"></i> Сохранить товар
+                </button>
+                <button class="btn" onclick="clearForm()" style="background: #e2e8f0; color: #4a5568;">
+                    <i class="fas fa-eraser"></i> Очистить форму
+                </button>
+                <a href="/" class="btn" style="background: #a0aec0; color: white; text-decoration: none;">
+                    <i class="fas fa-arrow-left"></i> Вернуться к списку
+                </a>
+            </div>
+
+            <div id="form-status" style="margin-top: 2rem; padding: 1rem; border-radius: 8px; display: none;">
+                <!-- Статус загрузки будет отображаться здесь -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Уведомление -->
+    <div id="notification" class="notification" style="display: none;"></div>
+
+    <script src="static/script.js"></script>
+</body>
+</html>

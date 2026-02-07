@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Статистика</title>
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1><i class="fas fa-store"></i> Каталог товаров</h1>
+            </div>
+            <div class="nav-links">
+                <a href="/"><i class="fas fa-list"></i> Товары</a>
+                <a href="/add"><i class="fas fa-plus-circle"></i> Добавить товар</a>
+                <a href="/stats" class="active"><i class="fas fa-chart-bar"></i> Статистика</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1 style="margin-bottom: 2rem; color: #667eea;">
+            <i class="fas fa-chart-pie"></i> Статистика каталога
+        </h1>
+
+        <!-- Загрузка -->
+        <div id="loading" class="loading">
+            <i class="fas fa-spinner"></i>
+            <p>Загрузка статистики...</p>
+        </div>
+
+        <!-- Основные показатели -->
+        <div id="stats-grid" class="stats-grid" style="display: none;">
+            <div class="stat-card">
+                <h3><i class="fas fa-boxes"></i> Всего товаров</h3>
+                <div class="stat-number" id="total-products">0</div>
+                <p style="color: #666; margin-top: 0.5rem;">в каталоге</p>
+            </div>
+
+            <div class="stat-card">
+                <h3><i class="fas fa-money-bill-wave"></i> Общая стоимость</h3>
+                <div class="stat-number" id="total-value">0 ₽</div>
+                <p style="color: #666; margin-top: 0.5rem;">стоимость всех товаров</p>
+            </div>
+
+            <div class="stat-card">
+                <h3><i class="fas fa-calculator"></i> Средняя цена</h3>
+                <div class="stat-number" id="avg-price">0 ₽</div>
+                <p style="color: #666; margin-top: 0.5rem;">средняя цена товара</p>
+            </div>
+
+            <div class="stat-card">
+                <h3><i class="fas fa-layer-group"></i> Категорий</h3>
+                <div class="stat-number" id="total-categories">0</div>
+                <p style="color: #666; margin-top: 0.5rem;">разных категорий</p>
+            </div>
+        </div>
+
+        <!-- Графики -->
+        <div id="charts-container" style="display: none;">
+            <div class="chart-container">
+                <h3><i class="fas fa-chart-bar"></i> Распределение по категориям</h3>
+                <canvas id="categoryChart" height="100"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <h3><i class="fas fa-tags"></i> Распределение по ценам</h3>
+                <canvas id="priceChart" height="100"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <h3><i class="fas fa-money-bill-trend-up"></i> Стоимость по категориям</h3>
+                <canvas id="valueChart" height="100"></canvas>
+            </div>
+        </div>
+
+        <!-- Детальная статистика -->
+        <div class="stats-details" style="display: none;" id="details-container">
+            <h3><i class="fas fa-info-circle"></i> Детальная статистика по категориям</h3>
+            <div id="category-details">
+                <!-- Детали загружаются через JS -->
+            </div>
+        </div>
+
+        <!-- Кнопка обновления -->
+        <div style="text-align: center; margin-top: 2rem;">
+            <button class="btn btn-primary" onclick="loadStatistics()">
+                <i class="fas fa-sync-alt"></i> Обновить статистику
+            </button>
+            <a href="/" class="btn" style="background: #a0aec0; color: white; text-decoration: none; margin-left: 1rem;">
+                <i class="fas fa-arrow-left"></i> Вернуться к товарам
+            </a>
+        </div>
+    </main>
+
+    <!-- Уведомление -->
+    <div id="notification" class="notification" style="display: none;"></div>
+
+    <script src="static/script.js"></script>
+</body>
+</html>
