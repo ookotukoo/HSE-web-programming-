@@ -69,7 +69,7 @@ def read_products(
         category: Optional[str] = None,
         min_price: Optional[float] = Query(None, ge=0),
         max_price: Optional[float] = Query(None, ge=0),
-        sort_by: Optional[str] = Query(None, regex="^(price_asc|price_desc|name|newest)$"),
+        sort_by: Optional[str] = Query(None, pattern="^(price_asc|price_desc|name|newest)$"),
         db: Session = Depends(get_db)
 ):
     products = crud.get_products(
