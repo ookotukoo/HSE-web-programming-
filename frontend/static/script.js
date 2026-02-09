@@ -1,5 +1,5 @@
 // ========== КОНФИГУРАЦИЯ ==========
-const API_BASE_URL = 'http://localhost:8000';
+const API_BASE_URL = window.location.origin;
 
 // ========== ОБЩИЕ ФУНКЦИИ ==========
 function showNotification(message, type = 'success') {
